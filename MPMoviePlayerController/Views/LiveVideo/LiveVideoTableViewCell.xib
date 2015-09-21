@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LiveVideoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd4-S5-85I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvI-14-ulh">
+                        <rect key="frame" x="7" y="42" width="305" height="1"/>
+                        <color key="backgroundColor" red="0.84629216269999996" green="0.84629216269999996" blue="0.84629216269999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="TFP-vG-LCm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CvI-14-ulh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-1" id="2Z3-ec-nTr"/>
+                    <constraint firstItem="Cd4-S5-85I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="A9c-o4-7Lv"/>
+                    <constraint firstItem="Cd4-S5-85I" firstAttribute="baseline" secondItem="CvI-14-ulh" secondAttribute="baseline" id="ZmM-sD-dm0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CvI-14-ulh" secondAttribute="bottom" constant="-8" id="dSo-pn-U18"/>
+                    <constraint firstAttribute="trailing" secondItem="Cd4-S5-85I" secondAttribute="trailing" id="q0v-bg-I4r"/>
+                    <constraint firstItem="CvI-14-ulh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="w2V-lM-nsw"/>
+                    <constraint firstItem="Cd4-S5-85I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xjv-DL-NWp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="liveLable" destination="Cd4-S5-85I" id="zkF-gI-AEc"/>
+                <outlet property="nubmLable" destination="CvI-14-ulh" id="JDG-nM-8Dy"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
