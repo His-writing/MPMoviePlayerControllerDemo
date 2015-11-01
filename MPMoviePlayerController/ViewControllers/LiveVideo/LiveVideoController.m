@@ -2,9 +2,9 @@
 //  LiveVideoController.m
 //  knowZhengzhou
 //
-//  Created by shuzhenguo on 15/7/30.
-//  Copyright (c) 2015年 shuzhenguo. All rights reserved.
-//视频直播
+//  Created by hongkunpeng on 15/7/30.
+//  Copyright (c) 2015年 hongkunpeng. All rights reserved.
+//历年获奖节目回顾
 /*
 1.获取网络url 后不传到avplay,让其他的字符串来接，等到点击播放的时候，进行视频加载
 2.在avplay内部进行 进行处理播放
@@ -15,8 +15,8 @@
 //#import "JZVideoPlayerView.h"
 #import "AppDelegate.h"
 #import "LiveVideoTableViewCell.h"
-
 #import "KrVideoPlayerController.h"
+#define grayRGBO   [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0]
 
 // 4.屏幕大小尺寸
 #define screen_width [UIScreen mainScreen].bounds.size.width
@@ -83,6 +83,7 @@
         
         ///** 进入全屏状态 */
         [self.videoController setWillChangeToFullscreenMode:^{
+            
             [weakSelf toolbarHidden:YES];
             
             
@@ -142,8 +143,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationItem.titleView=[ Titlelable lableTitile:@"视频直播"];
-    
+//    self.navigationItem.titleView=[ Titlelable lableTitile:@""];
 //    lastIndexPath=nil;
 //    indexPathByAddingIndex
 
@@ -152,18 +152,17 @@
 //    appDelegate.isFullScreen = YES;
     
     
-    self.liveNameArray=[[NSMutableArray alloc]initWithObjects:@"点击进入第一直播",@"点击进入第二直播",@"点击进入第三直播",@"点击进入第四直播",@"点击进入第五直播", nil];
+    self.liveNameArray=[[NSMutableArray alloc]initWithObjects:@"点击进入",@"点击进入间",@"点击进入",@"点击进入",@"点击进入", nil];
+//    @"点击进入深圳财经",
+    self.liveUrlArrayb=[[NSMutableArray alloc]initWithObjects:@"正在播放：",@"正在播放：",@"正在播放：",@"正在播放：",@"正在播放：", nil];
+//    @"正在播放：深圳财经",
+    self.liveUrlArray=[[NSMutableArray alloc]initWithObjects:@"",@"",@"",@"",@"",nil];
+    [self liveVideoUrlmethods];
     
-    self.liveUrlArrayb=[[NSMutableArray alloc]initWithObjects:@"正在播放：第一直播间",@"正在播放：第二直播间",@"正在播放：第三直播间",@"正在播放：第四直播间",@"正在播放：第五直播间", nil];
-    
-    self.liveUrlArray=[[NSMutableArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
-    self.liveVideoUrl=[NSString stringWithFormat:@"%@",@""];
-    
-    [self addVideoPlayerWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.liveVideoUrl]]];
+//    http://219.232.160.141:5080/hls/77e19c3214ef876a1e71b4f92bd49040.m3u8
 
-    
     NSLog(@"%f",self.videoController.frame.size.height);
-    self.livevideoTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 230+64, screen_width, screen_height) style:UITableViewStylePlain];
+    self.livevideoTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 230+64, screen_width, screen_height-230-64) style:UITableViewStylePlain];
     self.livevideoTableView.dataSource=self;
     self.livevideoTableView.delegate=self;
     self.livevideoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -189,59 +188,67 @@
     static NSString *strategyIdentifier = @"LiveVideoTableViewCell";
     LiveVideoTableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:strategyIdentifier];
-    
         if (cell == nil) {
             cell=[[[NSBundle mainBundle]loadNibNamed:@"LiveVideoTableViewCell" owner:self options:nil]lastObject];
         }
     if (selectedIndexPath.row == indexPath.row) {
         
+        cell.backgroundColor=grayRGBO;
+
         cell.liveLable.text=[self.liveUrlArrayb objectAtIndex:indexPath.row];
     }else {
         cell.liveLable.text=[self.liveNameArray objectAtIndex:indexPath.row];
+        cell.backgroundColor=[UIColor clearColor];
 
     }
-    cell.liveLable.backgroundColor=[UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+//    
+//    if (indexPath.row==0) {
+//
+//    }else{
+//
+//    
+//    }
+//    cell.liveLable.backgroundColor=[UIColor clearColor];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
     }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    return 50;
+    return 55;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+//    [self stop];
+
+    
+//    if (self.videoController. ) {
+//        <#statements#>
+//    }
+//    [self.videoController stop];
+//    [self.videoControl animateShow];
+
+//    [self.videoController.videoControl  animateShow];
+    
+    
     self.liveVideoUrl=[NSString stringWithFormat:@"%@",[self.liveUrlArray objectAtIndex:indexPath.row]];
     
     [self addVideoPlayerWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.liveVideoUrl]]];
 
     
-    
-//    self.videoController.view.backgroundColor=[UIColor blackColor];
-//    if (_jzPlayer.isPlaying==YES) {
-//        [_jzPlayer pause];
-//    }
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self initJZPlayer];
-////        [_jzPlayer play];
-//
-//    });
-//
-//    NSURL *url = [NSURL URLWithString:self.liveVideoUrl];
-//
-//
-//    [_jzPlayer  playUrlContentVideo:url];
-    
-//    playUrlContentVideo
-    
     selectedIndexPath = indexPath;
+    
     LiveVideoTableViewCell *newCell = (LiveVideoTableViewCell*)[tableView cellForRowAtIndexPath:
                                                                 indexPath];
     newCell.liveLable.text = [self.liveUrlArrayb objectAtIndex:indexPath.row];
     
     [tableView reloadData];
+    
 
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -252,20 +259,27 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
-    
 //    if ([[MacroCommon  getCurrntNet]isEqualToString:@"当前网络不可用，请检查您的网络连接。"]) {
-//      
-//        [self showHUD:@"亲，没有网！" withHiddenDelay:1.0];
-//        
+//        [SVProgressHUD showErrorWithStatus:@"亲，网速不给力，稍好重试哦!"];
 //    }else if( [[MacroCommon getCurrntNet]isEqualToString:@"您当前使用的是蜂窝数据"]){
 //        [self showHUD:@"您当前使用的是蜂窝数据" withHiddenDelay:1.0];
 //    }
-//
+    
+    
+    [self liveVideoUrlmethods];
+    
 
 }
 
+-(void)liveVideoUrlmethods{
+    
+    
+    self.liveVideoUrl=[NSString stringWithFormat:@"%@",@"  "];
+    
+    [self addVideoPlayerWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.liveVideoUrl]]];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
